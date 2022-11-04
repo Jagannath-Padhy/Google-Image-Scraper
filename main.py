@@ -14,7 +14,7 @@ def scroll_to_end():
     time.sleep(2)
 
 
-def fetch_img_urls(search_query: str, image_count: int = 20):
+def fetch_img_urls(search_query: str, image_count: int, target_path):
     driver.get('https://images.google.com/')
     search = driver.find_element(By.CLASS_NAME, "gLFyf.gsfi")
     search.send_keys(search_query)
@@ -89,4 +89,4 @@ def fetch_img_urls(search_query: str, image_count: int = 20):
         driver.quit()
 
 
-fetch_img_urls("bmw")
+fetch_img_urls("bmw",20,r'D:\New folder/images')
