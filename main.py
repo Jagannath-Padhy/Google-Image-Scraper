@@ -89,4 +89,4 @@ def fetch_img_urls(search_query: str, image_count: int, target_path):
         driver.quit()
 
 
-fetch_img_urls("bmw",20,r'D:\New folder/images')
+fetch_img_urls("meme",20,r'D:\New folder/images')
