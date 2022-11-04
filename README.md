@@ -1,2 +1,8 @@
 # Google Image Scraper
- Searches for the query on Google images and downloads the requested amount of images and stores it on local drive
+  Searches for the query on Google images and downloads the requested amount of images and stores it
+  on local drive
+
+## To run
+  * Download the Chromedriver of the same version of chrome installed in your system and update the       path in chromedriver_path.
+  * To Begin the download the download, Run fetch_img_urls with Query,No. of images required and 
+    folder directory.
