@@ -5,7 +5,7 @@ import time
 import requests
 import os
 
-chromedriver_path = "D:\chromedriver.exe"
+chromedriver_path = r'F:\google image scraper\chromedriver_win32\chromedriver.exe'
 driver = wd.Chrome(chromedriver_path)
 
 
@@ -16,7 +16,7 @@ def scroll_to_end():
 
 def fetch_img_urls(search_query: str, image_count: int, target_path):
     driver.get('https://images.google.com/')
-    search = driver.find_element(By.CLASS_NAME, "gLFyf.gsfi")
+    search = driver.find_element(By.CLASS_NAME, "gLFyf")
     search.send_keys(search_query)
     search.send_keys(Keys.RETURN)
     links = []
@@ -24,13 +24,13 @@ def fetch_img_urls(search_query: str, image_count: int, target_path):
     try:
         time.sleep(2)
         urls = driver.find_elements(By.CSS_SELECTOR, 'a.VFACy.kGQAp.sMi44c.lNHeqe.WGvvNb')
-        img_urls = driver.find_elements(By.CLASS_NAME, 'rg_i.Q4LuWd')
+        img_urls = driver.find_elements(By.CSS_SELECTOR, 'img.rg_i.Q4LuWd')
 
         while len(urls) & len(img_urls) < image_count:
             if len(urls) & len(img_urls) <= image_count:
                 scroll_to_end()
                 urls = driver.find_elements(By.CSS_SELECTOR, 'a.VFACy.kGQAp.sMi44c.lNHeqe.WGvvNb')
-                img_urls = driver.find_elements(By.CLASS_NAME, 'rg_i.Q4LuWd')
+                img_urls = driver.find_elements(By.CSS_SELECTOR, 'img.rg_i.Q4LuWd')
             else:
                 pass
 
@@ -48,7 +48,7 @@ def fetch_img_urls(search_query: str, image_count: int, target_path):
             img_url.click()
 
             time.sleep(2)
-            actual_images = driver.find_elements(By.CSS_SELECTOR, 'img.n3VNCb')
+            actual_images = driver.find_elements(By.XPATH, '//*[@id="Sva75c"]/div[2]/div/div[2]/div[2]/div[2]/c-wiz/div[2]/div[3]/div[1]/a/img[1]')
             for actual_image in actual_images:
                 if actual_image.get_attribute('src') and 'http' in actual_image.get_attribute('src'):
                     img_src.append(actual_image.get_attribute('src'))
@@ -89,4 +89,4 @@ def fetch_img_urls(search_query: str, image_count: int, target_path):
         driver.quit()
 
 
-fetch_img_urls("meme",20,r'D:\New folder/images')
+fetch_img_urls("crpf",50,r'D:\New folder/images')
